@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -46,6 +47,27 @@ public class UserController {
         model.addAttribute("users", userService.findAll()); //will return whatever is inside the map
 
         return "/user/create";
+    }
+
+    @GetMapping("/update") //different income request, that's why we put update
+    public String editUser(@PathVariable("username") String username, Model model){
+
+        model.addAttribute("user", userService.findByID(username));
+        model.addAttribute("users", userService.findAll()); //it will give the completed table, no update yet, just populating
+        model.addAttribute("roles", roleService.findAll());
+
+        return "/user/update";
+    }
+
+    //will save edited info, or updated info
+    @PostMapping("/update")
+    public String updateUser(@PathVariable("username") String username, Model model){
+        model.addAttribute("user", new UserDTO());
+        model.addAttribute("roles", roleService.findAll());
+        model.addAttribute("users", userService.findAll());
+
+        return "/user/create";
+
     }
 
 }
