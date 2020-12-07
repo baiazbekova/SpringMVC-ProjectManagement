@@ -49,7 +49,7 @@ public class UserController {
         return "/user/create";
     }
 
-    @GetMapping("/update") //different income request, that's why we put update
+    @GetMapping("/update/{username}") //different income request, that's why we put update
     public String editUser(@PathVariable("username") String username, Model model){
 
         model.addAttribute("user", userService.findByID(username));
@@ -60,8 +60,9 @@ public class UserController {
     }
 
     //will save edited info, or updated info
-    @PostMapping("/update")
-    public String updateUser(@PathVariable("username") String username, Model model){
+    @PostMapping("/update/{username}")
+    public String updateUser(@PathVariable("username") String username, UserDTO user, Model model){
+        userService.update(user);
         model.addAttribute("user", new UserDTO());
         model.addAttribute("roles", roleService.findAll());
         model.addAttribute("users", userService.findAll());
