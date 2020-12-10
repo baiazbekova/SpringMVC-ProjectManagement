@@ -1,14 +1,19 @@
 package com.cybertek.bootstrap;
 
+import com.cybertek.dto.ProjectDTO;
 import com.cybertek.dto.RoleDTO;
 import com.cybertek.dto.UserDTO;
 import com.cybertek.enums.Gender;
+import com.cybertek.enums.Status;
 import com.cybertek.implementation.RoleServiceImpl;
+import com.cybertek.service.ProjectService;
 import com.cybertek.service.RoleService;
 import com.cybertek.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataGenerator implements CommandLineRunner {
@@ -17,11 +22,13 @@ public class DataGenerator implements CommandLineRunner {
 
     RoleService roleService;
     UserService userService;
+    ProjectService projectService;
 
 @Autowired
-    public DataGenerator(RoleService roleService, UserService userService) {
+    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService) {
         this.roleService = roleService;
         this.userService = userService;
+        this.projectService = projectService;
     }
 
     //whenever i start the appl, the method below will run first.
@@ -37,7 +44,7 @@ public class DataGenerator implements CommandLineRunner {
         roleService.save(employeeRole);
 
         UserDTO user1 = new UserDTO("John", "Kesy",
-                "admin@cybertek.com", "abc", true, "7459684532", adminRole, Gender.MALE);
+                "admin@cybertek.com", "abc", true, "7459684532", managerRole, Gender.MALE);
         UserDTO user5 = new UserDTO("John", "Kesy",
                 "admin2@cybertek.com", "abc", true, "7459684532", adminRole, Gender.MALE);
         UserDTO user2 = new UserDTO("Delisa",
@@ -54,7 +61,14 @@ public class DataGenerator implements CommandLineRunner {
         userService.save(user4);
         userService.save(user5);
 
+        ProjectDTO project1 = new ProjectDTO("SpringMVC", "PR001", user1, LocalDate.now(), LocalDate.now().plusDays(25), "Creating controllers", Status.OPEN);
+        ProjectDTO project2 = new ProjectDTO("SpringORM", "PR002", user2, LocalDate.now(), LocalDate.now().plusDays(10), "Creating ORMS", Status.IN_PROGRESS);
+        ProjectDTO project3 = new ProjectDTO("SpringContainer", "PR003", user1, LocalDate.now(), LocalDate.now().plusDays(32), "Creating DB", Status.UAT_TEST);
 
+
+        projectService.save(project1);
+        projectService.save(project2);
+        projectService.save(project3);
 
 
     }
