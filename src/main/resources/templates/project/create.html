@@ -57,7 +57,7 @@
                                                     <label>Assigned Manager</label>
                                                     <select th:field="*{assignedManager}" class="custom-select" required="required">
                                                         <option th:value=" ''" th:text="Select"></option>
-                                                        <option th:each="manager : ${managers}" th:value="${manager.userName}" th:text="${manager.firstName + ' ' + manager.lastName}"></option>
+                                                        <option th:each="manager : ${managers}" th:value="${manager.username}" th:text="${manager.firstName + ' ' + manager.lastName}"></option>
                                                     </select>
                                                     <div class="invalid-feedback">Please choose manager</div>
                                                 </div>
