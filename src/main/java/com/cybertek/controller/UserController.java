@@ -28,8 +28,6 @@ public class UserController {
     public String createUser(Model model){
 
         model.addAttribute("user", new UserDTO());
-        //datagenerator
-
         model.addAttribute("roles", roleService.findAll());
         model.addAttribute("users", userService.findAll());
 
@@ -40,13 +38,7 @@ public class UserController {
     public String insertUser(UserDTO user, Model model){
 
         userService.save(user);
-
-        //user, roles, users
-        model.addAttribute("user", new UserDTO());
-        model.addAttribute("roles", roleService.findAll());
-        model.addAttribute("users", userService.findAll()); //will return whatever is inside the map
-
-        return "/user/create";
+        return "redirect:/user/create";
     }
 
     @GetMapping("/update/{username}") //different income request, that's why we put update
@@ -63,12 +55,14 @@ public class UserController {
     @PostMapping("/update/{username}")
     public String updateUser(@PathVariable("username") String username, UserDTO user, Model model){
         userService.update(user);
-        model.addAttribute("user", new UserDTO());
-        model.addAttribute("roles", roleService.findAll());
-        model.addAttribute("users", userService.findAll());
+        return "redirect:/user/create";
 
-        return "/user/create";
+    }
 
+   @GetMapping("/delete/{username}")
+    public String deleteUser(@PathVariable("username") String username, UserDTO user, Model model){
+        userService.delete(user);
+        return "redirect:/user/create";
     }
 
 }
