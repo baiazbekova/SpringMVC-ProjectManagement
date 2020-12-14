@@ -11,4 +11,9 @@ public interface UserService extends CrudService <UserDTO, String> {
 
    //to be able to use the methods from CrudService we need to extend it as shown above
 
+
+    List<UserDTO> findManagers();
+    List<UserDTO> findEmployees();
+
+
 }

@@ -30,7 +30,7 @@ public class ProjectController {
 
         model.addAttribute("project", new ProjectDTO());
         model.addAttribute("projects", projectService.findAll());
-        model.addAttribute("managers", userService.findAll());
+        model.addAttribute("managers", userService.findManagers());
         return "/project/create";
     }
 
@@ -51,12 +51,11 @@ public class ProjectController {
     }
 
 
-    //will save edited info, or updated info
-    @PostMapping("/update/{username}")
-    public String updateUser(@PathVariable("username") String username, UserDTO user, Model model){
-        userService.update(user);
-        return "redirect:/user/create";
 
+    @GetMapping("/complete/{projectcode}")
+    public String completeUser(@PathVariable("projectcode") String projectcode ){
+        projectService.complete(projectService.findByID(projectcode));
+        return "redirect:/project/complete";
     }
 
 

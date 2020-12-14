@@ -70,6 +70,31 @@ public class DataGenerator implements CommandLineRunner {
         projectService.save(project2);
         projectService.save(project3);
 
+        UserDTO user10 = new UserDTO("John", "Kesy",
+                "john@cybertek.com", "Abc1", true, "7459684532", managerRole, Gender.MALE);
+        UserDTO user6 = new UserDTO("Mike", "Smith",
+                "mike@cybertek.com", "Abc2", true, "7459684532", adminRole, Gender.MALE);
+        UserDTO user7 = new UserDTO("Delisa",
+                "Norre", "delisa@cybertek.com", "123", true, "8567412358", managerRole, Gender.FEMALE);
+        UserDTO user8 = new UserDTO("Craig", "Jark",
+                "craig@cybertek.com", "Abc3", true, "7777775566", employeeRole, Gender.MALE);
+        UserDTO user9 = new UserDTO("Shaun",
+                "Hayns", "shaun@cybertek.com", "Abc4", true, "3256987412", managerRole, Gender.MALE);
+        UserDTO user11 = new UserDTO("Elizebeth",
+                "Loren", "elizebeth@cybertek.com", "Abc4", true, "5306987412", employeeRole, Gender.FEMALE);
+        UserDTO user12 = new UserDTO("Maria",
+                "Ada", "maria@cybertek.com", "Abc4", true, "9996987412", employeeRole, Gender.FEMALE);
+        UserDTO user13 = new UserDTO("Bill",
+                "Matt", "maria@cybertek.com", "Abc4", true, "8881239846", employeeRole, Gender.MALE);
+        userService.save(user10);
+        userService.save(user6);
+        userService.save(user7);
+        userService.save(user8);
+        userService.save(user9);
+        userService.save(user11);
+        userService.save(user12);
+        userService.save(user13);
+
 
     }
 }
