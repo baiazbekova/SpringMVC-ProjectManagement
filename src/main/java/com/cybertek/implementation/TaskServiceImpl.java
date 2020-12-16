@@ -41,6 +41,7 @@ public class TaskServiceImpl extends AbstractMapService <TaskDTO, Long> implemen
         return super.save(object.getId(), object);
     }
 
+
     @Override
     public void update(TaskDTO object) {
         super.update(object.getId(), object);

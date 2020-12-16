@@ -89,7 +89,7 @@ public class DataGenerator implements CommandLineRunner {
         UserDTO user12 = new UserDTO("Maria",
                 "Ada", "maria@cybertek.com", "Abc4", true, "9996987412", employeeRole, Gender.FEMALE);
         UserDTO user13 = new UserDTO("Bill",
-                "Matt", "maria@cybertek.com", "Abc4", true, "8881239846", employeeRole, Gender.MALE);
+                "Matt", "aig@cybertek.com", "Abc4", true, "8881239846", employeeRole, Gender.MALE);
         userService.save(user10);
         userService.save(user6);
         userService.save(user7);
@@ -99,10 +99,10 @@ public class DataGenerator implements CommandLineRunner {
         userService.save(user12);
         userService.save(user13);
 
-        TaskDTO task1 = new TaskDTO(1L,project1,user8,"Controller","Request Mapping",Status.IN_PROGRESS,LocalDate.now().minusDays(4));
-        TaskDTO task2 = new TaskDTO(2L,project3,user3,"Configuration","Database Connnection",Status.COMPLETE,LocalDate.now().minusDays(12));
-        TaskDTO task3 = new TaskDTO(3L,project3,user6,"Mapping","One-To-Many",Status.IN_PROGRESS,LocalDate.now().minusDays(8));
-        TaskDTO task4 = new TaskDTO(4L,project2,user7,"Dependency Injection","Autowired",Status.UAT_TEST,LocalDate.now().minusDays(20));
+        TaskDTO task1 = new TaskDTO(project1,user8,"Controller","Request Mapping",Status.IN_PROGRESS,LocalDate.now().minusDays(4));
+        TaskDTO task2 = new TaskDTO(project3,user3,"Configuration","Database Connnection",Status.COMPLETE,LocalDate.now().minusDays(12));
+        TaskDTO task3 = new TaskDTO(project3,user6,"Mapping","One-To-Many",Status.IN_PROGRESS,LocalDate.now().minusDays(8));
+        TaskDTO task4 = new TaskDTO(project2,user7,"Dependency Injection","Autowired",Status.UAT_TEST,LocalDate.now().minusDays(20));
         taskService.save(task1);
         taskService.save(task2);
         taskService.save(task3);
