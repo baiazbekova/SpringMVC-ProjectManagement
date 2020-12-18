@@ -76,6 +76,11 @@ public class ProjectController {
 
     }
 
+    @GetMapping("/manager/complete")
+    public String getProjectByManager(){
+        return "/manager/project-status";
+    }
+
 
 
 }
