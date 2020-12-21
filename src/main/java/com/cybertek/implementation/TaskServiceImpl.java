@@ -1,10 +1,12 @@
 package com.cybertek.implementation;
 
 import com.cybertek.dto.TaskDTO;
+import com.cybertek.dto.UserDTO;
 import com.cybertek.service.TaskService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -49,5 +51,11 @@ public class TaskServiceImpl extends AbstractMapService <TaskDTO, Long> implemen
         object.setTaskStatus(foundProject.getTaskStatus());
 
         super.update(object.getId(), object);
+    }
+
+
+    @Override
+    public List<TaskDTO> findTasksByManager(UserDTO manager) {
+        return super.findAll().stream().filter(task -> task.getProject().getAssignedManager().equals(manager)).collect(Collectors.toList());
     }
 }
